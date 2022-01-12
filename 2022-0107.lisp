@@ -155,6 +155,31 @@
 			 :name "鹿児島県")) ; => #<PREFS {1004C53B73}>
 (setf p47 (make-instance 'prefs
 			 :name "沖縄県")) ; => #<PREFS {1004CCA133}>
+
+;; [2022-01-11]
+(setf title (list "title1" "title2" "title3" "title4")) ; => ("title1" "title2" "title3" "title4")
+(setf line (list "a" "b" "c" "d" "e" "f"))		; => ("a" "b" "c" "d" "e" "f")
+
+(if (y-or-n-p "１行目はタイトル行ですか？")
+    (set-title)
+    (loop read-line))	; => T
+;; 1行目をタイトル行として取得し、
+;; 2行目以降はそのタイトルをキーとしてデータを格納していく。
+
+(cons "a" (cons "b" (cons "c" "hoge")))	; => ("a" "b" "c" . "hoge")
+(setf alist (mapcar #'cons title line))	; => (("title1" . "a") ("title2" . "b") ("title3" . "c") ("title4" . "d"))
+alist					; => (("title1" . "a") ("title2" . "b") ("title3" . "c") ("title4" . "d"))
+(assoc "title1" alist)			; => NIL
+(defparameter *alist*
+  '(("one" . 1)
+    ("two" . 2)
+    ("three" . 3)))			; => *ALIST*
+(assoc "one" *alist*)			; => NIL
+;; key がシンボルではなく文字列の場合、連想リストをassoc出来ない。
+(assoc 'title1 '((title1 . a) (title2 . b) (title3 . c) (title4 . d))) ; => (TITLE1 . A)
+(rassoc "a" '(("title1" . "a") ("title2" . "b") ("title3" . "c") ("title4" . "d"))) ; => NIL
+
+
 (defun main ()
 
   )
