@@ -4,7 +4,7 @@
 
 (defpackage csv-to-tree
   (:use :cl)
-  (:export :csv-to-tree))		; => #<PACKAGE "CSV-TO-TREE">
+  (:export :csv-to-tree :chk-ttl))		; => #<PACKAGE "CSV-TO-TREE">
 (in-package :csv-to-tree)		; => #<PACKAGE "CSV-TO-TREE">
 
 (defun row-proc (line &optional (sep #\,))
